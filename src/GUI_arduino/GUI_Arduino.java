@@ -315,7 +315,9 @@ public class GUI_Arduino extends javax.swing.JFrame {
     public void serialEvent(SerialPortEvent spe) {
         try {
             if (ino.isMessageAvailable()) {
-                txtArea.append("\nResultado: "+ino.printMessage());
+                String mensaje=ino.printMessage();
+                txtArea.append(mensaje);
+                System.out.println("\nResultado: "+mensaje);
             }
         } catch (SerialPortException | ArduinoException ex) {
             Logger.getLogger(GUI_Arduino.class.getName()).log(Level.SEVERE, null, ex);

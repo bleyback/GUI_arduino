@@ -93,6 +93,11 @@ public class Main_window extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("About Me");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu3ActionPerformed(evt);
@@ -148,13 +153,23 @@ public class Main_window extends javax.swing.JFrame {
         ven_dialog.setTitle("Log In");
 
         ven_dialog.setVisible(true);
+        if(ven_dialog.logged){
+            GUI_Arduino viewArduino= new GUI_Arduino();
+            viewArduino.setLocationRelativeTo(null);
+            viewArduino.setTitle("ARDUINO");
+            this.dispose();
+        }
     }//GEN-LAST:event_btn_LogInActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         aboutMe about = new aboutMe(this,true);
         about.setLocationRelativeTo(null);
         about.setVisible(true);
-    }//GEN-LAST:event_jMenu3ActionPerformed
+    }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
      * @param args the command line arguments
