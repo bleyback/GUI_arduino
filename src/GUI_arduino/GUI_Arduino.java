@@ -2,6 +2,7 @@ package GUI_arduino;
 
 import com.panamahitek.ArduinoException;
 import com.panamahitek.PanamaHitek_Arduino;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Enumeration; 
 import java.util.List;
@@ -39,12 +40,16 @@ public class GUI_Arduino extends javax.swing.JFrame {
 
         jMenuItem4 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         mensaje = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
+        LedOff = new javax.swing.JButton();
+        LedBlink = new javax.swing.JButton();
+        LedOn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_file = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -58,9 +63,17 @@ public class GUI_Arduino extends javax.swing.JFrame {
 
         jLabel1.setText("jLabel1");
 
+        jCheckBox1.setText("jCheckBox1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 255, 204));
+
+        mensaje.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mensajeKeyPressed(evt);
+            }
+        });
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -77,6 +90,27 @@ public class GUI_Arduino extends javax.swing.JFrame {
         txtArea.setRows(5);
         jScrollPane1.setViewportView(txtArea);
 
+        LedOff.setText("Apagar Led");
+        LedOff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LedOffActionPerformed(evt);
+            }
+        });
+
+        LedBlink.setText("Parpadeo del Led");
+        LedBlink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LedBlinkActionPerformed(evt);
+            }
+        });
+
+        LedOn.setText("Encender Led");
+        LedOn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LedOnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -84,17 +118,21 @@ public class GUI_Arduino extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(LedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(LedOff, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(105, 105, 105)
-                                .addComponent(jLabel2)))
-                        .addGap(0, 34, Short.MAX_VALUE)))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LedBlink, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,8 +144,13 @@ public class GUI_Arduino extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LedOff, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LedBlink, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -268,6 +311,35 @@ public class GUI_Arduino extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menu_fileActionPerformed
 
+    private void mensajeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mensajeKeyPressed
+        if(evt.getExtendedKeyCode()== KeyEvent.VK_ENTER){
+            enviar_mensaje(mensaje.getText());
+        }
+    }//GEN-LAST:event_mensajeKeyPressed
+
+    private void LedOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LedOnActionPerformed
+        enviar_mensaje("1");
+        
+    }//GEN-LAST:event_LedOnActionPerformed
+
+    private void LedOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LedOffActionPerformed
+        enviar_mensaje("2");
+    }//GEN-LAST:event_LedOffActionPerformed
+
+    private void LedBlinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LedBlinkActionPerformed
+        enviar_mensaje("3");
+    }//GEN-LAST:event_LedBlinkActionPerformed
+    public void enviar_mensaje(String mensaje){
+        try {
+            
+            ino.sendData(mensaje);
+        } catch (ArduinoException ex) {
+            Logger.getLogger(GUI_Arduino.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SerialPortException ex) {
+            Logger.getLogger(GUI_Arduino.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            System.out.println(mensaje);
+    }
     public void limpiar_lista() {
 
         lista_Serial.clear();
@@ -316,7 +388,7 @@ public class GUI_Arduino extends javax.swing.JFrame {
         try {
             if (ino.isMessageAvailable()) {
                 String mensaje=ino.printMessage();
-                txtArea.append(mensaje);
+                txtArea.append(mensaje+"\n");
                 System.out.println("\nResultado: "+mensaje);
             }
         } catch (SerialPortException | ArduinoException ex) {
@@ -355,7 +427,11 @@ public void fun_conectar() throws ArduinoException {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LedBlink;
+    private javax.swing.JButton LedOff;
+    private javax.swing.JButton LedOn;
     private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;

@@ -70,7 +70,7 @@ public class Main_window extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(102, 255, 204));
+        setBackground(new java.awt.Color(102, 255, 153));
 
         btn_LogIn.setText("Iniciar Programa");
         btn_LogIn.addActionListener(new java.awt.event.ActionListener() {

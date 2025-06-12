@@ -4,6 +4,7 @@
  */
 package GUI_arduino;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,7 +31,7 @@ public class LogIn_dialog_window extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnLog = new javax.swing.JButton();
         txtPass = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -45,11 +46,22 @@ public class LogIn_dialog_window extends javax.swing.JDialog {
                 txtUserActionPerformed(evt);
             }
         });
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserKeyPressed(evt);
+            }
+        });
 
-        jButton1.setText("Iniciar sesion");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLog.setText("Iniciar sesion");
+        btnLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLogActionPerformed(evt);
+            }
+        });
+
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPassKeyPressed(evt);
             }
         });
 
@@ -69,7 +81,7 @@ public class LogIn_dialog_window extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1)
+                            .addComponent(btnLog)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUser)
                             .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))))
@@ -89,7 +101,7 @@ public class LogIn_dialog_window extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(jButton1)
+                .addComponent(btnLog)
                 .addGap(33, 33, 33))
         );
 
@@ -100,7 +112,7 @@ public class LogIn_dialog_window extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogActionPerformed
         String u=txtUser.getText();
         String p=txtPass.getText();
         if(u.equals(user) && p.equals(pass)){
@@ -111,7 +123,24 @@ public class LogIn_dialog_window extends javax.swing.JDialog {
         }
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLogActionPerformed
+
+    private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
+        if(evt.getExtendedKeyCode()== KeyEvent.VK_ENTER){
+            if(!txtUser.getText().trim().equals("")){
+                txtPass.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtUserKeyPressed
+
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+        if(evt.getExtendedKeyCode()== KeyEvent.VK_ENTER){
+            if(!txtUser.getText().trim().equals("")){
+                btnLog.requestFocus();
+                btnLog.doClick();
+            }
+        }
+    }//GEN-LAST:event_txtPassKeyPressed
 
     /**
      * @param args the command line arguments
@@ -156,7 +185,7 @@ public class LogIn_dialog_window extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLog;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
