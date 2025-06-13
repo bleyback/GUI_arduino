@@ -151,7 +151,6 @@ public class Main_window extends javax.swing.JFrame {
         LogIn_dialog_window ven_dialog = new LogIn_dialog_window(this, true);
         ven_dialog.setLocationRelativeTo(null);
         ven_dialog.setTitle("Log In");
-
         ven_dialog.setVisible(true);
         if(ven_dialog.logged){
             GUI_Arduino viewArduino= new GUI_Arduino();
